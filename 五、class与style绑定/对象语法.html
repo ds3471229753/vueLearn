@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象语法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+//绑定class方法一：
+<div id="vm_01" class="static"
+     v-bind:class="{ active: isActive,'text-danger':hasError }">
+</div>
+
+//绑定class方法二：
+<div id="vm_02" class="static"
+     v-bind:class="classObject">
+</div>
+
+//绑定class方法三：
+<div id="vm_03" class="static"
+     v-bind:class="classObject">
+</div>
+<script>
+    //绑定方法一：
+    var vm = new Vue({
+        el: '#vm_01',
+        data: {
+            isActive: true,
+            hasError: false
+        }
+    });
+
+    //绑定方法二：
+    var vm2 = new Vue({
+        el: '#vm_02',
+        data: {
+            classObject: {
+                active: true,
+                'text-danger02': true
+            }
+        }
+    });
+
+    //绑定方法三：
+    var vm3 = new Vue({
+        el: '#vm_03',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            classObject: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger03': !this.error && true
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

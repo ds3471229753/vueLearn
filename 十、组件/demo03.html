@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子组件向父组件传递消息</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child-to-parent 
+        v-for="post in posts" 
+        :key="post.id" 
+        :post="post"
+        :style="{ fontSize : postFontSize + 'em' }"
+        @enlarge-text="large"></child-to-parent>
+    </div>
+    <script>
+        // 子组件向父组件传递消息，用到$emit自定义事件
+        /* 
+          在子组件自定义一个事件：@click="$emit('name')"  name->事件名称
+          在父组件中监听这个事件，就像监听一个原生 DOM 事件一样 @name="..."
+        */
+        Vue.component('child-to-parent',{
+            props: ['post'],
+            template: 
+                `<div>
+                    <h3>{{ post.title }}</h3>
+                    <button @click="$emit('enlarge-text',2)">点我变大</button>
+                </div>`
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                posts: [
+                    { id: 1, title: 'My journey with Vue' },
+                    { id: 2, title: 'Blogging with Vue' },
+                    { id: 3, title: 'Why Vue is so fun' }
+                ],
+                postFontSize: 1
+            },
+            methods: {
+                large(largeAmount) {
+                    this.postFontSize += largeAmount;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-**条件指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm01">
+    <p v-if="type === 'A'">A</p>
+    <p v-else-if="type === 'B'">B</p>
+    <p v-else-if="type === 'C'">C</p>
+    <p v-else>我什么也不想说</p>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#vm01',
+        data: {
+            type: true
+        }
+    })
+</script>
+</body>
+</html>

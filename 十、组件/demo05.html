@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件注册</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <global-register></global-register>
+        <part-register state="局部"></part-register>
+    </div>
+    <script>
+        /* 
+            全局注册：使用Vue.component
+            局部注册：在父元素的components对象中注册组件
+        */
+        // 全局注册
+        Vue.component('global-register', {
+            template: '<p>这个组件是全局注册的</p>',
+        })
+
+        // 局部注册
+        let componentA = {
+            props: ['state'],
+            template: '<h3>这个组件是{{ state }}注册的</h3>'
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'part-register': componentA,
+            }
+        })
+    </script>
+</body>
+
+</html>

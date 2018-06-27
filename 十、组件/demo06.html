@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Props详解</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 当传入一个数字时,即便 `42` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+        <blog-host blog-title blog-name="duan" :blog-age="24" :blog-interest="['骑行','游泳']"></blog-host>
+        <!-- <blog-host v-bind="host"></blog-host> -->
+    </div>
+    <script>
+        Vue.component('blog-host', {
+            // props: ['name','age'], //当传递整个对象时，需要把对象的属性一一列出来
+            props: {
+                blogTitle: Boolean,
+                blogName: String,
+                blogAge: Number,
+                blogInterest: Array,
+            },
+            data() {
+                return {
+                    title: this.blogTitle,
+                    name: this.blogName,
+                    age: this.blogAge,
+                    interest: this.blogInterest,
+                }
+            },
+            methods: {
+                delData() {
+                    this.age++;
+                }
+            },
+            template: `<h3 @click="delData">{{age}}</h3>`,
+            // template: '<h3>{{name}}{{age}}岁了</h3>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                host: {
+                    name: 'duan',
+                    age: 24,
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

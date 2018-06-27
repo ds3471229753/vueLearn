@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example02">
+    <button @click.ctrl.right="greet">Greet</button>
+    <button @click.ctrl.exact="say('hi')">Say hi</button>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#example02',
+        data: {
+            name: 'Vue.js'
+        },
+        methods: {
+            greet: function (event) {
+                alert('Hello,' + this.name + '!');
+                if(event){
+                    alert(event.target.tagName);
+                }
+            },
+            say: function(message){
+                alert(message);
+            }
+        }
+    })
+</script>
+</body>
+</html>

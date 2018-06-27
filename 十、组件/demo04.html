@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插槽分发内容</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <alert-box>
+            You are in dangerous!!!
+        </alert-box>
+    </div>
+    <script>
+        // <slot>的用法了解一下
+        Vue.component('alert-box',{
+            template: 
+                `<div>
+                    <strong>DANGER</strong>
+                    <slot></slot>
+                </div>`
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+</html>

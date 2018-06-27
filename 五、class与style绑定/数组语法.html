@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组语法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+//绑定方法一：
+<div id="vm_01" class="hello"
+     :class="[classColor,classFont]"></div>
+
+<script>
+    var vm01 = new Vue({
+        el: '#vm_01',
+        data: {
+            classColor: 'blue',
+            classFont: 'big'
+        }
+    });
+</script>
+</body>
+</html>
